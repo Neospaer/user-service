@@ -1,0 +1,20 @@
+spring:
+    datasource:
+        url: jdbc:postgresql://localhost:5432/postgres1
+        username: postgres
+        password: 7895123
+
+    jpa:
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.PostgreSQLDialect
+    liquibase:
+        change-log: classpath:changelog.txt
+
+application:
+    security:
+        jwt:
+            secret-key: 914154067513105d625dd96accfd98136f040aa2b88dbe42f31d439a295e1d14
+            expiration: 3600000
+            refresh-token:
+                expiration: 604800000

@@ -3,7 +3,8 @@ package com.example.userservice.Service;
 import com.example.userservice.Repository.RepositoryToken;
 import com.example.userservice.Repository.RepositoryUser;
 import com.example.userservice.Request.AuthenticationRequest;
-import com.example.userservice.Request.RequestRegister;
+import com.example.userservice.Request.RegisterRequest;
+import com.example.userservice.Request.SignOutRequest;
 import com.example.userservice.Responce.AuthenticationResponse;
 import com.example.userservice.User.Role;
 import com.example.userservice.User.Token;
@@ -25,7 +26,6 @@ public class AuthenticationService {
     private final RepositoryUser repositoryUser;
     private final PasswordEncoder passwordEncoder;
     private final ServiceJWTImpl serviceJWT;
-
     private final RepositoryToken repositoryToken;
 
     private final AuthenticationManager authenticationManager;
@@ -60,7 +60,7 @@ public class AuthenticationService {
         repositoryToken.saveAll(validUserTokens);
     }
 
-    public AuthenticationResponse register(RequestRegister request) {
+    public AuthenticationResponse register(RegisterRequest request) {
         var user = User.builder()
                 .name(request.getName())
                 .username(request.getUsername())

@@ -1,0 +1,88 @@
+databaseChangeLog:
+  - changeSet:
+      id: Dev - 1
+      author: neospaer
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            - tableExists:
+                tableName: users
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: integer
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: username
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: password
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: role
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: Dev - 2
+      author: neospaer
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            - tableExists:
+                tableName: tokens
+      changes:
+        - createTable:
+            tableName: tokens
+            columns:
+              - column:
+                  name: id
+                  type: integer
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: token
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: type_token
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: revoked
+                  type: boolean
+              - column:
+                  name: expired
+                  type: boolean
+              - column:
+                  name: users_id
+                  type: integer
+                  constraints:
+                    nullable: false
+            schemaName: public
+        - addForeignKeyConstraint:
+            baseTableName: tokens
+            baseColumnNames: users_id
+            referencedTableName: users
+            referencedColumnNames: id
+            constraintName: users_tokens_fk
+

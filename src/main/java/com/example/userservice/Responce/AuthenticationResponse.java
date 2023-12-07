@@ -1,6 +1,7 @@
 package com.example.userservice.Responce;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

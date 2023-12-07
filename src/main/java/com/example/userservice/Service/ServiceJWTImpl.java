@@ -7,17 +7,22 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Service;
 
+import java.security.Key;
+import java.util.Date;
 import java.util.HashMap;
-
+import java.util.Map;
+import java.util.function.Function;
+@Service
 public class ServiceJWTImpl implements ServiceJWT{
-    @Value("${application.security.jwt.secret-key}")
+    @Value("914154067513105d625dd96accfd98136f040aa2b88dbe42f31d439a295e1d14")
     private String secretKey;
 
-    @Value("${application.security.jwt.expiration}")
+    @Value("3600000")
     private Long jwtExpiration;
 
-    @Value("${application.security.jwt.refresh-token.expiration}")
+    @Value("604800000")
     private Long refreshExpiration;
 
     @Override

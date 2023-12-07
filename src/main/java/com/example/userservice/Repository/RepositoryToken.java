@@ -3,10 +3,11 @@ package com.example.userservice.Repository;
 import com.example.userservice.User.Token;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
-
+@Repository
 public interface RepositoryToken extends JpaRepository<Token,Long> {
     @Query("""
     select t from Token t

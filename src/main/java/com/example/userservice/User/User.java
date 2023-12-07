@@ -1,11 +1,16 @@
 package com.example.userservice.User;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.List;
+import java.util.Collection;
 
 @Data
 @Entity
@@ -13,7 +18,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Table(name = "users")
-public class User implements UserDetails{
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -28,9 +33,9 @@ public class User implements UserDetails{
     @Column(name = "password")
     private String password;
 
-    /*@Column(name = "confirmPassword")
+    @Column(name = "confirmPassword")
     private String confirmPassword;
-*/
+
     @Enumerated(EnumType.STRING)
     private Role role;
 

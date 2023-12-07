@@ -1,12 +1,20 @@
 package com.example.userservice.Controller;
 
+import com.example.userservice.Request.AuthenticationRequest;
+import com.example.userservice.Request.RegisterRequest;
+import com.example.userservice.Request.SignOutRequest;
+import com.example.userservice.Responce.AuthenticationResponse;
+import com.example.userservice.Service.AuthenticationService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/api")
@@ -20,7 +28,7 @@ public class ControllerUser {
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
-            @RequestBody RequestRegister request
+            @RequestBody RegisterRequest request
     ){
         return ResponseEntity.ok(service.register(request));
     }
@@ -39,4 +47,8 @@ public class ControllerUser {
     ) throws IOException {
         service.refreshToken(request, response);
     }
+    /*@PostMapping("/signout")
+    public void signout(@RequestBody @Valid SignOutRequest request) {
+        tokenService.deleteByAccessToken(request.getAccessToken()
+    }*/
 }
